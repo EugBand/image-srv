@@ -1,0 +1,27 @@
+version: '3'
+services:
+    localstack:
+      image: localstack/localstack:latest
+      environment:
+        - DEBUG=1
+        - SERVICES=s3
+        - DATA_DIR=/tmp/localstack/data
+        - LEGACY_DIRECTORIES=1
+      ports:
+        - '4566-4583:4566-4583'
+        - '8055:8080'
+      volumes:
+        - './.localstack:/tmp/localstack'
+      networks:
+        - readid-test-net
+    redis:
+        image: redis
+        command: --requirepass 12345
+        ports:
+        - "6379:6379"
+        networks:
+        - readid-test-net
+networks:
+  readid-test-net:
+    driver: bridge
+    external: true

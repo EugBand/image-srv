@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: 'resource-srv'
+  redis:
+    host: ${REDIS_URL:localhost}
+    port: ${REDIS_PORT:6379}
+    password: ${REDIS_PASSWORD:12345}
+s3:
+  access:
+    name: ${S3_NAME:localstack}
+    secret: ${S3_SECRET:localstack}
+  endpoint:
+    url: ${S3_URL:http://localhost:4566}
+  region:
+    name: ${S3_REGION:us-east-1}
+server:
+  port: '8090'
